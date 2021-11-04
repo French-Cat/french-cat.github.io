@@ -1,0 +1,50 @@
+
+/*
+@font-face {
+	font-family: 'dvd';
+	src: url('https://github.com/NoSleepThemes/NoSleepThemes.github.io/blob/main/themes/nordnshapes/Discord.ttf');
+	font-weight: normal;
+	font-style: normal;
+}
+*/
+
+body {
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+	/*
+  background: #45484d;
+  background: -moz-radial-gradient(center, ellipse cover, #45484d 0%, #000000 100%);
+  background: -webkit-radial-gradient(center, ellipse cover, #45484d 0%, #000000 100%);
+  background: radial-gradient(ellipse at center, #45484d 0%, #000000 100%);
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000', GradientType=1);
+	*/
+	background: #111111;
+}
+
+#dvd {
+  position: absolute;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  width: 300px;
+  height: 100px;
+  color: #fff;
+}
+
+#dvd:before {
+  /*font-family: 'dvd' !important;*/
+	font-family: "Comic Sans MS", "Comic Sans", cursive;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 0.25;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /*content: "\e900";*/
+	content: "owo";
+  font-size: 175px;
+}
