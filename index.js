@@ -16,7 +16,7 @@ var box = document.getElementById('dvd'),
   yMax = win.innerHeight - boxTop - boxHeight,
   request = null,
   direction = 'se',
-  speed = 4,
+  speed = 10,
   timeout = null;
 
 init();
