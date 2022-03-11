@@ -28,6 +28,6 @@
     }
 </script>
 <script>
-  const urlParams = new URLSearchParams(document.url);
+    const urlParams = new URLSearchParams(document.URL);
     webretroEmbed(document.getElementById("webretro-container"), "https://french-cat.github.io/g4mes/", { system: urlParams.get("sys"), rom: urlParams.get("rom") });
 </script>
