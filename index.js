@@ -1,150 +1,155 @@
-var box = document.getElementById('dvd'),
-  colors = ['#e74c3c', '#8e44ad', '#3498db', '#e67e22', '#2ecc71'],
-  currentColor = Math.floor((Math.random() * 5) + 1),
-  win = window,
-  ww = win.innerWidth,
-  wh = win.innerHeight,
-  translateX = Math.floor((Math.random() * ww) + 1),
-  translateY = Math.floor((Math.random() * wh) + 1),
-  boxWidth = box.offsetWidth,
-  boxHeight = box.offsetHeight,
-  boxTop = box.offsetTop,
-  boxLeft = box.offsetLeft,
-  xMin = -boxLeft,
-  yMin = -boxTop,
-  xMax = win.innerWidth - boxLeft - boxWidth,
-  yMax = win.innerHeight - boxTop - boxHeight,
-  request = null,
-  direction = 'se',
-  speed = 10,
-  timeout = null;
+var box = document.getElementById("dvd"),
+    colors = ["#e74c3c", "#8e44ad", "#3498db", "#e67e22", "#2ecc71"],
+    currentColor = Math.floor(Math.random() * 5 + 1),
+    win = window,
+    ww = win.innerWidth,
+    wh = win.innerHeight,
+    translateX = Math.floor(Math.random() * ww + 1),
+    translateY = Math.floor(Math.random() * wh + 1),
+    boxWidth = box.offsetWidth,
+    boxHeight = box.offsetHeight,
+    boxTop = box.offsetTop,
+    boxLeft = box.offsetLeft,
+    xMin = -boxLeft,
+    yMin = -boxTop,
+    xMax = win.innerWidth - boxLeft - boxWidth,
+    yMax = win.innerHeight - boxTop - boxHeight,
+    request = null,
+    direction = "se",
+    speed = 10,
+    timeout = null;
 
 init();
 
 // reset constraints on resize
-window.addEventListener('resize', function(argument) {
-  clearTimeout(timeout);
-  timeout = setTimeout(update, 100);
-}, false);
+window.addEventListener(
+    "resize",
+    function (argument) {
+        clearTimeout(timeout);
+        timeout = setTimeout(update, 100);
+    },
+    false
+);
 
 function init() {
-  request = requestAnimationFrame(init);
-  move();
-  // setInterval(function() {
-  //   move();
-  // }, 16.66);
+    request = requestAnimationFrame(init);
+    move();
+    // setInterval(function() {
+    //   move();
+    // }, 16.66);
 }
 
 // reset constraints
 function update() {
-  xMin = -boxLeft;
-  yMin = -boxTop;
-  xMax = win.innerWidth - boxLeft - boxWidth;
-  yMax = win.innerHeight - boxTop - boxHeight;
+    xMin = -boxLeft;
+    yMin = -boxTop;
+    xMax = win.innerWidth - boxLeft - boxWidth;
+    yMax = win.innerHeight - boxTop - boxHeight;
 }
 
 function move() {
-  setDirection();
-  setStyle(box, {
-    transform: 'translate3d(' + translateX + 'px, ' + translateY + 'px, 0)',
-  });
+    setDirection();
+    setStyle(box, {
+        transform: "translate3d(" + translateX + "px, " + translateY + "px, 0)",
+    });
 }
 
 function setDirection() {
-  switch (direction) {
-    case 'ne':
-      translateX += speed;
-      translateY -= speed;
-      break;
-    case 'nw':
-      translateX -= speed;
-      translateY -= speed;
-      break;
-    case 'se':
-      translateX += speed;
-      translateY += speed;
-      break;
-    case 'sw':
-      translateX -= speed;
-      translateY += speed;
-      break;
-  }
-  setLimits();
+    switch (direction) {
+        case "ne":
+            translateX += speed;
+            translateY -= speed;
+            break;
+        case "nw":
+            translateX -= speed;
+            translateY -= speed;
+            break;
+        case "se":
+            translateX += speed;
+            translateY += speed;
+            break;
+        case "sw":
+            translateX -= speed;
+            translateY += speed;
+            break;
+    }
+    setLimits();
 }
 
 function setLimits() {
-	if ((translateY <= yMin || translateY >= yMax) && (translateX <= xMin || translateX >= xMax)) {
-		document.body.style.background = '#ffffff';
-	}
-  if (translateY <= yMin) {
-    if (direction == 'nw') {
-      direction = 'sw';
-    } else if (direction == 'ne') {
-      direction = 'se';
+    if ((translateY <= yMin || translateY >= yMax) && (translateX <= xMin || translateX >= xMax)) {
+        document.body.style.background = "#ffffff";
     }
-    switchColor();
-  }
-  if (translateY >= yMax) {
-    if (direction == 'se') {
-      direction = 'ne';
-    } else if (direction == 'sw') {
-      direction = 'nw';
+    if (translateY <= yMin) {
+        if (direction == "nw") {
+            direction = "sw";
+        } else if (direction == "ne") {
+            direction = "se";
+        }
+        switchColor();
     }
-    switchColor();
-  }
-  if (translateX <= xMin) {
-    if (direction == 'nw') {
-      direction = 'ne';
-    } else if (direction == 'sw') {
-      direction = 'se';
+    if (translateY >= yMax) {
+        if (direction == "se") {
+            direction = "ne";
+        } else if (direction == "sw") {
+            direction = "nw";
+        }
+        switchColor();
     }
-    switchColor();
-  }
-  if (translateX >= xMax) {
-    if (direction == 'ne') {
-      direction = 'nw';
-    } else if (direction == 'se') {
-      direction = 'sw';
+    if (translateX <= xMin) {
+        if (direction == "nw") {
+            direction = "ne";
+        } else if (direction == "sw") {
+            direction = "se";
+        }
+        switchColor();
     }
-    switchColor();
-  }
+    if (translateX >= xMax) {
+        if (direction == "ne") {
+            direction = "nw";
+        } else if (direction == "se") {
+            direction = "sw";
+        }
+        switchColor();
+    }
 }
 
 function switchColor() {
-  var color = Math.floor((Math.random() * 25) + 1);
-  
-  while( color == currentColor ) {
-    color = Math.floor((Math.random() * 25) + 1)
-  }
-  
-  setStyle(box, {
-    color: colors[color]
-  });
-  
-  currentColor = color;
+    var color = Math.floor(Math.random() * 25 + 1);
+
+    while (color == currentColor) {
+        color = Math.floor(Math.random() * 25 + 1);
+    }
+
+    setStyle(box, {
+        color: colors[color],
+    });
+
+    currentColor = color;
 }
 
 function getVendor() {
-  var ua = navigator.userAgent.toLowerCase(),
-    match = /opera/.exec(ua) || /msie/.exec(ua) || /firefox/.exec(ua) || /(chrome|safari)/.exec(ua) || /trident/.exec(ua),
-    vendors = {
-      opera: '-o-',
-      chrome: '-webkit-',
-      safari: '-webkit-',
-      firefox: '-moz-',
-      trident: '-ms-',
-      msie: '-ms-',
-    };
+    var ua = navigator.userAgent.toLowerCase(),
+        match = /opera/.exec(ua) || /msie/.exec(ua) || /firefox/.exec(ua) || /(chrome|safari)/.exec(ua) || /trident/.exec(ua),
+        vendors = {
+            opera: "-o-",
+            chrome: "-webkit-",
+            safari: "-webkit-",
+            firefox: "-moz-",
+            trident: "-ms-",
+            msie: "-ms-",
+        };
 
-  return vendors[match[0]];
-};
+    return vendors[match[0]];
+}
 
 function setStyle(element, properties) {
-  var prefix = getVendor(),
-    property, css = '';
-  for (property in properties) {
-    css += property + ': ' + properties[property] + ';';
-    css += prefix + property + ': ' + properties[property] + ';';
-  }
-  element.style.cssText += css;
+    var prefix = getVendor(),
+        property,
+        css = "";
+    for (property in properties) {
+        css += property + ": " + properties[property] + ";";
+        css += prefix + property + ": " + properties[property] + ";";
+    }
+    element.style.cssText += css;
 }
