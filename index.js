@@ -1,6 +1,6 @@
 var box = document.getElementById('dvd'),
-  colors = ['#D12229', '#F68A1E', '#FDE01A', '#007940', '#24408E', '#732982', '#000000', '#078D70', '#26CEAA', '#98E8C1', '#FFFFFF', '#7BADE2', '#5049CC', '#3D1A78', '#0080ff', '#0040ff', '#0000ff', '#4000ff', '#8000ff', '#bf00ff', '#ff00ff', '#ff00bf', '#ff0080', '#ff0040', '#ff0000'],
-  currentColor = Math.floor((Math.random() * 25) + 1),
+  colors = ['#e74c3c', '#8e44ad', '#3498db', '#e67e22', '#2ecc71'],
+  currentColor = Math.floor((Math.random() * 5) + 1),
   win = window,
   ww = win.innerWidth,
   wh = win.innerHeight,
